@@ -1,6 +1,6 @@
 import requests
 import mysql.connector
-import pandas as pd
+#import pandas as pd
 import re
 from datetime import datetime
 
@@ -28,7 +28,7 @@ def connect_to_database():
     connection = mysql.connector.connect(
         host='localhost',
         user='root',        
-        password='Bala@34!',  
+        password='', #give your database password 
         database='cve_database'
     )
     return connection
@@ -60,8 +60,8 @@ def fetch_cve_data():
     }
 
     headers = {
-        'apiKey': 'bf3ded26-deee-4e1b-b72a-fcfdfe7957e3',          
-        'User-Agent': 'rbala3825@muleriders.saumag.edu' 
+        'apiKey': '',  #give your api key        
+        'User-Agent': ''  #give your registered email id
     }
 
     response = requests.get(base_url, headers=headers, params=params)
