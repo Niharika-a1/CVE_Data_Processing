@@ -12,7 +12,7 @@ def validate_cve_id(cve_id):
 
 # Utility function for validating severity
 def validate_severity(severity):
-    valid_severities = ['LOW', 'MEDIUM', 'HIGH', 'CRITICAL']
+    valid_severities = ['LOW', 'MEDIUM', 'HIGH']
     if severity.upper() not in valid_severities:
         raise ValueError(f"Invalid severity level. Choose from: {', '.join(valid_severities)}.")
 
@@ -25,7 +25,12 @@ def validate_date(date_string):
 
 # Database connection
 def connect_to_database():
-    connection = mysql.connector.connect(host='localhost',user='root',password='19121997' ,database='cve_database')
+    connection = mysql.connector.connect(
+        host='localhost',
+        user='root',        
+        password='Bala@34!',  
+        database='cve_database'
+    )
     return connection
 
 # Table creation
@@ -47,7 +52,7 @@ def create_table(connection):
 # Fetch CVE data from NVD API
 def fetch_cve_data():
     base_url = 'https://services.nvd.nist.gov/rest/json/cves/2.0'
-    total_to_fetch = 5  # Number of CVE entries you want to fetch
+    total_to_fetch = 1  # Number of CVE entries you want to fetch
 
     params = {
         'resultsPerPage': total_to_fetch,
@@ -55,8 +60,8 @@ def fetch_cve_data():
     }
 
     headers = {
-        'apiKey': '9967c9e8-52d5-4de6-9fc9-33c1369f8633',          
-        'User-Agent': 'niharika.ambojipet@gmail.com' 
+        'apiKey': 'bf3ded26-deee-4e1b-b72a-fcfdfe7957e3',          
+        'User-Agent': 'rbala3825@muleriders.saumag.edu' 
     }
 
     response = requests.get(base_url, headers=headers, params=params)
@@ -240,7 +245,7 @@ def main():
         print(row)
 
     print("\nSearch by Severity:")
-    severity = input("Enter severity level (LOW, MEDIUM, HIGH, CRITICAL): ")
+    severity = input("Enter severity level (LOW, MEDIUM, HIGH): ")
     results = search_by_severity(connection, severity)
     print(f"Found {len(results)} entries with severity {severity.upper()}.")
     for row in results:
